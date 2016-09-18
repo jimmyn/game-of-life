@@ -1,0 +1,1 @@
+export const RESOLUTION = {X: 70, Y: 70};
