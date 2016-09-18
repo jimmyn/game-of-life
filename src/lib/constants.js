@@ -1,1 +1,1 @@
-export const RESOLUTION = {X: 70, Y: 70};
+export const RESOLUTION = {X: 20, Y: 20};

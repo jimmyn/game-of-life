@@ -8,7 +8,6 @@ class GameStage extends Component {
     const rects = [];
     this.props.gameState.forEach((value, index) => {
       if (value !== 0) {
-        const fill = value > 0 ? '#000000' : '#c4c4c4';
         rects.push(
           <Rect
             x={index[0] * 10}
@@ -18,7 +17,8 @@ class GameStage extends Component {
             height={10}
             stroke="#c4c4c4"
             strokeWidth={1}
-            fill={fill} />
+            fill="#000000"
+            onClick={() => console.log('index', index)}/>
         );
       }
     });
