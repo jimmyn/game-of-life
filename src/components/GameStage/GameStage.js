@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import './GameStage.css';
 import {Layer, Rect, Stage} from 'react-konva';
-import {RESOLUTION} from 'lib/constants'
+import {RESOLUTION} from 'lib/constants';
 
 class GameStage extends Component {
   renderState() {
     const rects = [];
     this.props.gameState.forEach((value, index) => {
       if (value !== 0) {
+        const fill = value > 0 ? '#000000' : '#c4c4c4';
         rects.push(
           <Rect
             x={index[0] * 10}
@@ -17,7 +18,7 @@ class GameStage extends Component {
             height={10}
             stroke="#c4c4c4"
             strokeWidth={1}
-            fill="#000000" />
+            fill={fill} />
         );
       }
     });
@@ -26,14 +27,21 @@ class GameStage extends Component {
 
   render() {
     return (
-      <Stage
-        width={RESOLUTION.X * 10}
-        height={RESOLUTION.Y * 10}
-        className="GameStage">
-        <Layer>
-          {this.renderState()}
-        </Layer>
-      </Stage>
+      <div>
+        <Stage
+          width={RESOLUTION.X * 10}
+          height={RESOLUTION.Y * 10}
+          className="GameStage">
+          <Layer>
+            {this.renderState()}
+          </Layer>
+        </Stage>
+        <div>
+          <button onClick={this.props.nextStep}>
+            Next step
+          </button>
+        </div>
+      </div>
     );
   }
 }
