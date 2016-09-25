@@ -14,6 +14,7 @@ const getDestiny = (gameState, value, index) => {
       math.range(index[1] - 1 > 0 ? index[1] - 1 : 0, index[1] < Y - 2 ? index[1] + 2 : Y)
     )
   );
+  console.log(neighbors);
   neighbors.forEach((v, i) => {
     if (i !== index && v !== 0) aliveCount++;
   });
