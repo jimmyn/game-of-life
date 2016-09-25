@@ -34,8 +34,8 @@ const acorn = math.matrix([
 ]);
 
 const position = {
-  x: math.range(1, 1 + 7),
-  y: math.range(1, 1 + 3)
+  x: math.range(X / 2, X / 2 + 7),
+  y: math.range(Y / 2, Y / 2 + 3)
 };
 
 const initialGameState = math.zeros(X, Y)

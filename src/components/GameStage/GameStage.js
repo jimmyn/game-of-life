@@ -1,41 +1,37 @@
 import React, {Component} from 'react';
 import './GameStage.css';
-import {Layer, Rect, Stage} from 'react-konva';
 import {RESOLUTION} from 'lib/constants';
 
 class GameStage extends Component {
-  renderState() {
-    const rects = [];
+  componentDidMount() {
+    this.ctx = this.canvas.getContext('2d');
+    this.draw();
+  }
+
+  componentDidUpdate() {
+    this.draw();
+  }
+
+  draw() {
     this.props.gameState.forEach((value, index) => {
       if (value !== 0) {
-        rects.push(
-          <Rect
-            x={index[0] * 10}
-            y={index[1] * 10}
-            key={index}
-            width={10}
-            height={10}
-            stroke="#c4c4c4"
-            strokeWidth={1}
-            fill="#000000"
-            onClick={() => console.log('index', index)}/>
-        );
+        this.ctx.fillRect(index[0] * 10, index[1] * 10, 10, 10);
+      } else {
+        this.ctx.clearRect(index[0] * 10, index[1] * 10, 10, 10);
       }
     });
-    return rects;
   }
 
   render() {
     return (
       <div>
-        <Stage
+        <canvas
+          className="GameStage"
           width={RESOLUTION.X * 10}
           height={RESOLUTION.Y * 10}
-          className="GameStage">
-          <Layer>
-            {this.renderState()}
-          </Layer>
-        </Stage>
+          ref={node => {
+            this.canvas = node;
+          }} />
         <div>
           <button onClick={this.props.nextStep}>
             Next step
