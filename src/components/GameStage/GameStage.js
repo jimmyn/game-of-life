@@ -13,11 +13,13 @@ class GameStage extends Component {
   }
 
   draw() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.props.gameState.forEach((value, index) => {
       if (value !== 0) {
         this.ctx.fillRect(index[0] * 10, index[1] * 10, 10, 10);
       } else {
-        this.ctx.clearRect(index[0] * 10, index[1] * 10, 10, 10);
+        this.ctx.lineWidth = 0.25;
+        this.ctx.strokeRect(index[0] * 10, index[1] * 10, 10, 10);
       }
     });
   }
